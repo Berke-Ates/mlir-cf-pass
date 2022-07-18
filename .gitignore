@@ -1,0 +1,58 @@
+# Prerequisites
+*.d
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+# IDE & OS
+*.vscode/
+*.DS_STORE
+*.DS_Store
+*thumbs.db
+*desktop.ini
+
+# Python Cache
+*__pycache__/
+
+# CMake Build
+build/
+
+# SDFG Generator
+sdfg_gen/gen
+.dacecache
+_dacegraphs
+
+# Notes & Ideas folder
+.idea/
+
+# LaTeX files
+*.aux
+*.log
+*.toc
