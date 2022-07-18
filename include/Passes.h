@@ -1,5 +1,5 @@
-#ifndef CF_H
-#define CF_H
+#ifndef CF_PASSES_H
+#define CF_PASSES_H
 
 #include "mlir/Pass/Pass.h"
 
@@ -17,4 +17,4 @@ std::unique_ptr<Pass> createCFIndexToI64Pass();
 
 } // namespace mlir::cf
 
-#endif // CF_H
+#endif // CF_PASSES_H

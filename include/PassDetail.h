@@ -1,7 +1,7 @@
 #ifndef CF_PassDetail_H
 #define CF_PassDetail_H
 
-#include "SDFG/Dialect/Dialect.h"
+#include "mlir/InitAllDialects.h"
 #include "mlir/Pass/Pass.h"
 
 namespace mlir {
