@@ -57,6 +57,6 @@ void CFIndexToI64Pass::runOnOperation() {
     signalPassFailure();
 }
 
-std::unique_ptr<Pass> createCFIndexToI64Pass() {
+std::unique_ptr<Pass> cf::createCFIndexToI64Pass() {
   return std::make_unique<CFIndexToI64Pass>();
 }

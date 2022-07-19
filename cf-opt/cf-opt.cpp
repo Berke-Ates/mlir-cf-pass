@@ -9,7 +9,7 @@
 
 int main(int argc, char **argv) {
   mlir::registerAllPasses();
- //mlir::cf::registerCFIndexToI64Passes();
+  mlir::cf::registerCFIndexToI64Passes();
 
   mlir::DialectRegistry registry;
   // Add the following to include *all* MLIR Core dialects, or selectively
