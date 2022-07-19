@@ -34,7 +34,7 @@ struct CFTarget : public ConversionTarget {
 //===----------------------------------------------------------------------===//
 
 void populateCFIndexToI64ConversionPatterns(RewritePatternSet &patterns) {
-  MLIRContext *ctxt = patterns.getContext();
+  // MLIRContext *ctxt = patterns.getContext();
 
   // TODO: Register Patterns here
 }

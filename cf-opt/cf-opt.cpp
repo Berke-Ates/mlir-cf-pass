@@ -5,9 +5,11 @@
 #include "mlir/Support/FileUtilities.h"
 #include "mlir/Tools/mlir-opt/MlirOptMain.h"
 
+#include "Passes.h"
+
 int main(int argc, char **argv) {
   mlir::registerAllPasses();
-  // TODO: Register pass here
+ //mlir::cf::registerCFIndexToI64Passes();
 
   mlir::DialectRegistry registry;
   // Add the following to include *all* MLIR Core dialects, or selectively
