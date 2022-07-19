@@ -3,9 +3,9 @@
 
 include "mlir/Pass/PassBase.td"
 
-def CFIndexToI64Pass : Pass<"cf-index-to-i64", "ModuleOp"> {
-  let summary = "Convert index types in cf branches to i64";
-  let constructor = "mlir::cf::createCFIndexToI64Pass()";
+def CFIndexToIntPass : Pass<"cf-index-to-int", "ModuleOp"> {
+  let summary = "Convert index types in cf branches to int";
+  let constructor = "mlir::cf::createCFIndexToIntPass()";
   let dependentDialects = ["mlir::cf::ControlFlowDialect"];
 }
 

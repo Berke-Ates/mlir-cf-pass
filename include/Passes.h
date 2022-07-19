@@ -5,7 +5,7 @@
 
 namespace mlir::cf {
 
-std::unique_ptr<Pass> createCFIndexToI64Pass();
+std::unique_ptr<Pass> createCFIndexToIntPass();
 
 //===----------------------------------------------------------------------===//
 // Registration

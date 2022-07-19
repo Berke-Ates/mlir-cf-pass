@@ -1,3 +1,2 @@
-// RUN: cf-opt --show-dialects | FileCheck %s
-// CHECK: Available Dialects:
-// CHECK: cf
+// RUN: cf-opt --help | FileCheck %s
+// CHECK: --cf-index-to-int

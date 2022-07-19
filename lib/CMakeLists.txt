@@ -1,11 +1,11 @@
-add_mlir_dialect_library(CFIndexToI64
-  CFIndexToI64.cpp
+add_mlir_dialect_library(CFIndexToInt
+  CFIndexToInt.cpp
 
   ADDITIONAL_HEADER_DIRS
   ${PROJECT_SOURCE_DIR}/include
 
   DEPENDS
-  MLIRCFIndexToI64PassIncGen
+  MLIRCFIndexToIntPassIncGen
 )
 
-target_link_libraries(CFIndexToI64 PUBLIC MLIRIR)
+target_link_libraries(CFIndexToInt PUBLIC MLIRIR)
