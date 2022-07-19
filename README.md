@@ -2,9 +2,9 @@
 This project implements an out-of-tree optimization tool with a pass resolving 
 https://github.com/llvm/llvm-project/issues/55301.
 
-The pass converts index types in the CF operations to I64 by inserting index casts.
-Currently only `cf.br` is supported.
-The output type can be changed in `lib/CFIndexToInt.cpp:46` (Will be added as a command flag)
+The pass converts index types in the CF operations to I64 by inserting index casts.  
+Currently only `cf.br` is supported.  
+The output type can be changed in `lib/CFIndexToInt.cpp:46` (will be added as a command flag)
 
 ## Building
 
