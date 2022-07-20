@@ -54,15 +54,29 @@ public:
 // Helpers
 //===----------------------------------------------------------------------===//
 
+// Creates a cast from the index type to the desired integer type
 arith::IndexCastOp createIndexCastOp(ConversionPatternRewriter &rewriter,
                                      Value val) {
-
   Location loc = val.getLoc();
   OpBuilder builder(loc->getContext());
   OperationState state(loc, arith::IndexCastOp::getOperationName());
 
   arith::IndexCastOp::build(builder, state,
                             Converter().convertType(val.getType()), val);
+  arith::IndexCastOp indexCastOp =
+      cast<arith::IndexCastOp>(rewriter.create(state));
+
+  return indexCastOp;
+}
+
+// Creates a cast from the integer type to the index type (reverse of the above)
+arith::IndexCastOp createIndexCastOp(ConversionPatternRewriter &rewriter,
+                                     BlockArgument bArg) {
+  Location loc = bArg.getLoc();
+  OpBuilder builder(loc->getContext());
+  OperationState state(loc, arith::IndexCastOp::getOperationName());
+
+  arith::IndexCastOp::build(builder, state, builder.getIndexType(), bArg);
   arith::IndexCastOp indexCastOp =
       cast<arith::IndexCastOp>(rewriter.create(state));
 
@@ -80,6 +94,8 @@ public:
   LogicalResult
   matchAndRewrite(BranchOp op, OpAdaptor adaptor,
                   ConversionPatternRewriter &rewriter) const override {
+
+    // Rewrite the branch operation with casted args
     rewriter.setInsertionPoint(op);
     std::vector<Value> newOperands = {};
 
@@ -103,8 +119,27 @@ public:
     rewriter.create(state);
     rewriter.eraseOp(op);
 
-    Converter converter;
-    return rewriter.convertRegionTypes(op.getDest()->getParent(), converter);
+    // Rewrite branch args and add casts
+    rewriter.setInsertionPointToStart(op.getDest());
+
+    for (unsigned i = 0; i < op.getDest()->getNumArguments(); ++i) {
+      BlockArgument bArg = op.getDest()->getArgument(i);
+
+      if (!bArg.getType().isIndex())
+        continue;
+
+      // NOTE: Might be better to use the rewriter
+      bArg.setType(Converter().convertType(bArg.getType()));
+      arith::IndexCastOp indexCastOp = createIndexCastOp(rewriter, bArg);
+
+      // NOTE: Might be better to use the rewriter:
+      // rewriter.replaceUsesOfBlockArgument(bArg, indexCastOp);
+      // Failed to figure out how to erase the arguments without tripping a
+      // "Can't erase a value that's in use" error
+      bArg.replaceAllUsesExcept(indexCastOp, indexCastOp);
+    }
+
+    return success();
   }
 };
 
